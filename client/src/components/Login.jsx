@@ -3,10 +3,10 @@ import shareVideo from '../assets/share.mp4';
 import logo from '../assets/logo.png';
 import { GoogleLogin } from '@react-oauth/google';
 import jwt_decode from 'jwt-decode';
-import {client} from '../client'
+import { client } from '../client';
 import { useNavigate } from 'react-router-dom';
 const Login = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <main className="flex justify-start items-center items-center top-0 left-0 bottom-0 right-0 bg-blackOverlay flex-col h-screen">
       <div className="relative w-full h-full">
@@ -29,19 +29,18 @@ const Login = () => {
                 const decode = jwt_decode(credentialResponse.credential);
                 console.log(decode);
                 localStorage.setItem('user', JSON.stringify(decode));
-                const {name, sub, picture} = decode;
+                const { name, sub, picture } = decode;
                 const user = {
                   _id: sub,
                   _type: 'user',
                   userName: name,
-                  image: picture
-                }
-                console.log({name, sub, picture});
-                console.log({client})
-                client.createIfNotExists(user)
-                .then(() => {
-                  navigate('/', {replace: true})
-                })
+                  image: picture,
+                };
+                console.log({ name, sub, picture });
+                console.log({ client });
+                client.createIfNotExists(user).then(() => {
+                  navigate('/', { replace: true });
+                });
               }}
               onError={() => {
                 console.log('Login Failed');

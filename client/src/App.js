@@ -14,7 +14,7 @@ const router = createBrowserRouter([
     element: <Login />,
   },
 ]);
-console.log('..........',process.env);
+console.log('..........', process.env);
 function App() {
   return (
     <GoogleOAuthProvider
