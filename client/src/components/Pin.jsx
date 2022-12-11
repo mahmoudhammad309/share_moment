@@ -66,7 +66,9 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                 <a
                   href={`${image?.asset?.url}?dl=`}
                   download
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
                   className="bg-white w-9 h-9 p-2 rounded-full flex items-center justify-center text-dark text-xl opacity-75 hover:opacity-100 hover:shadow-md outline-none"
                 >
                   <MdDownloadForOffline />
@@ -102,7 +104,9 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                 >
                   {' '}
                   <BsFillArrowUpRightCircleFill />
-                  {destination?.slice(8, 17)}...
+                  {destination?.length > 15
+                    ? `${destination.slice(0, 15)}...`
+                    : destination}
                 </a>
               ) : undefined}
               {postedBy?._id === userInfo.sub && (
