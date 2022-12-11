@@ -31,7 +31,7 @@ const isActiveStyle =
 const isNotActiveStyle =
   'flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize';
 
-const SideBar = ({ user, closeToggle }) => {
+const Sidebar = ({ user, closeToggle }) => {
   const handleCloseSidebar = () => {
     if (closeToggle) closeToggle(false);
   };
@@ -93,4 +93,4 @@ const SideBar = ({ user, closeToggle }) => {
   );
 };
 
-export default SideBar;
+export default Sidebar;

@@ -1,24 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useRouteError, Link, Route, Routes } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 import { HiMenu } from 'react-icons/hi';
 import { AiFillCloseCircle } from 'react-icons/ai';
-import { SideBar, UserProfile } from '../components';
+import { Sidebar, UserProfile } from '../components';
 import Pins from '../container/Pins';
 import { client } from '../client';
 import logo from '../assets/logo.png';
 
 // CLIENT USER QUERY
 import { userQuery } from '../utils/data';
+import { fetchUser } from '../utils/fetchUser';
 
 const Home = () => {
-  const error = useRouteError();
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [user, setUser] = useState(null);
   const scrollRef = useRef(null);
-  const userInfo =
-    localStorage.getItem('user') !== 'undefined'
-      ? JSON.parse(localStorage.getItem('user'))
-      : localStorage.clear();
+  const userInfo = fetchUser();
 
   useEffect(() => {
     const query = userQuery(userInfo?.sub);
@@ -33,7 +30,7 @@ const Home = () => {
   return (
     <div className="flex bg-gray-50 md:flex-row flex-col h-screen transaction-height duration-75 ease-out">
       <div className="hidden md:flex h-screen flex-initial">
-        <SideBar user={user && user} />
+        <Sidebar user={user && user} />
       </div>
       <div className="flex md:hidden flex-row">
         <div className="p-2 w-full flex flex-row  justify-between items-center shadow-md">
@@ -64,7 +61,7 @@ const Home = () => {
                 onClick={() => setToggleSidebar(false)}
               />
             </div>
-            <SideBar user={user && user} closeToggle={setToggleSidebar} />
+            <Sidebar user={user && user} closeToggle={setToggleSidebar} />
           </div>
         )}
       </div>
