@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import { HiMenu } from 'react-icons/hi';
