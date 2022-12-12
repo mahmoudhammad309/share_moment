@@ -27,7 +27,6 @@ const Login = () => {
             <GoogleLogin
               onSuccess={(credentialResponse) => {
                 const decode = jwt_decode(credentialResponse.credential);
-                console.log(decode);
                 localStorage.setItem('user', JSON.stringify(decode));
                 const { name, sub, picture } = decode;
                 const user = {
@@ -36,8 +35,6 @@ const Login = () => {
                   userName: name,
                   image: picture,
                 };
-                console.log({ name, sub, picture });
-                console.log({ client });
                 client.createIfNotExists(user).then(() => {
                   navigate('/', { replace: true });
                 });

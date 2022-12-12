@@ -13,8 +13,11 @@ const router = createBrowserRouter([
     path: '/login',
     element: <Login />,
   },
+  {
+    path: '*',
+    element: <Home />,
+  },
 ]);
-console.log('..........', process.env);
 function App() {
   return (
     <GoogleOAuthProvider
