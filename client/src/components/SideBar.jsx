@@ -3,29 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { RiHomeFill } from 'react-icons/ri';
 import { IoIosArrowForward } from 'react-icons/io';
 import logo from '../assets/logo.png';
-
-//  to remove later
-const categories = [
-  {
-    name: 'Test1',
-  },
-  {
-    name: 'Test2',
-  },
-  {
-    name: 'Test3',
-  },
-  {
-    name: 'Test4',
-  },
-  {
-    name: 'Test5',
-  },
-  {
-    name: 'other',
-  },
-];
-//  to remove later
+import { categories } from '../utils/data';
 const isActiveStyle =
   'flex items-center px-5 gap-3 font-extraBold border-r-2 border-black transition-all duration-200 ease-in-out capitalize';
 const isNotActiveStyle =
@@ -69,6 +47,11 @@ const Sidebar = ({ user, closeToggle }) => {
                 onClick={handleCloseSidebar}
                 key={category.name}
               >
+                <img
+                  src={category.image}
+                  alt={category.name}
+                  className="w-8 h-8 rounded-full shadow-sm"
+                />
                 {category.name}
               </NavLink>
             );
