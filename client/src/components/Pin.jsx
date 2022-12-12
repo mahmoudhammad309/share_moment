@@ -12,7 +12,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
 
   const userInfo = fetchUser();
   const alreadySaved = !!save?.filter(
-    (item) => item.postedBy._id === userInfo.sub
+    (item) => item.postedBy._id === userInfo?.sub
   )?.length;
 
   const savePin = (id) => {
@@ -23,10 +23,10 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
         .insert('after', 'save[-1]', [
           {
             _key: uuidv4(),
-            userId: userInfo.sub,
+            userId: userInfo?.sub,
             postedBy: {
               _type: 'postedBy',
-              _ref: userInfo.sub,
+              _ref: userInfo?.sub,
             },
           },
         ])
@@ -109,7 +109,7 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save } }) => {
                     : destination}
                 </a>
               ) : undefined}
-              {postedBy?._id === userInfo.sub && (
+              {postedBy?._id === userInfo?.sub && (
                 <button
                   type="button"
                   onClick={(e) => {
